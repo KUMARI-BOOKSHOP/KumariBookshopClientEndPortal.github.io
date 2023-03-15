@@ -19,4 +19,4 @@ HTML , CSS , Bootstrap , SCSS , AJAX , jQuery , Java Script
 
 <br/>
 
-###### © 2023 Universal Car Sale ~Sahan Nimesha~
+###### © 2023 KUMARI BOOKSHOP ~Sahan Nimesha~
