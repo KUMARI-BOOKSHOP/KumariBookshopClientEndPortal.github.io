@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KUMARI BOOKSHOP</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="css/login.css"/>
+
+</head>
+
+<body class="img js-fullheight" style="background-image: url(images/bg.jpg)">
+<section class="p-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-2"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <h3 class="mb-4 text-center">Create an account?</h3>
+                    <form class="signin-form" method="POST">
+                        <div class="form-group">
+                            <input id="fullName-field" type="fullName" name="cusName" class="form-control"
+                                   placeholder="Full Name" required/>
+                        </div>
+                        <div class="form-group">
+                            <input id="address-field" type="address" name="address" class="form-control"
+                                   placeholder="Address" required/>
+                        </div>
+                        <div class="form-group">
+                            <input id="email-field" type="email" name="email" class="form-control" placeholder="Email"
+                                   required/>
+                        </div>
+                        <div class="d-flex">
+                            <div class="form-group mr-2">
+                                <input id="contact-field" type="contact" class="form-control" name="contactNo"
+                                       placeholder="Contact" required/>
+                            </div>
+                            <div class="form-group">
+                                <input id="nic-field" type="nic" name="nic" class="form-control" placeholder="NIC"
+                                       required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <button id="addCustomer" type="submit" class="form-control btn btn-primary submit px-3">
+                              <a href="./signup.html" class="px-2 py-2 mr-md-1 rounded">Next -></a>
+                            </button>
+                          </a>
+                        </div>
+                    </form>
+                    <p class="w-100 text-center">
+                        &mdash; Or Have an account &mdash;
+                    </p>
+                    <div class="social d-flex text-center">
+                        <a href="login.html" class="px-2 py-2 mr-md-1 rounded">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    $("#addCustomer").click(function () {
+        let formData = {
+            cusName: $("#fullName-field").val(),
+            address: $("#address-field").val(),
+            nic: $("#nic-field").val(),
+            email: $("#email-field").val(),
+            contactNo: $("#contact-field").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;",
+            url: "http://localhost:8080/api/v1/customer/",
+            data: JSON.stringify(formData),
+            dataType: "json",
+
+        }).done(function (data) {
+            console.log(data);
+        });
+    });
+</script>
+
+</body>
+</html>
