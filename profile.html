@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>KUMARI BOOKSHOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Universal Car Sale</a>
+        <form class="d-flex">
+            <a class="btn btn-outline-success" href="home.html" type="">Home</a>
+        </form>
+    </div>
+</nav>
+<div class="container pt-5">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-50">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img
+                                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                        alt="Maxwell Admin"
+                                />
+                            </div>
+                            <h5 class="user-name">
+                                <input type="text"
+                                       class="form-control"
+                                       id="fullNameTag"
+                                       placeholder="Enter full name"
+                                />
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="fullName"
+                                       placeholder="Enter full name"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="eMail">Email</label>
+                                <input
+                                        type="email"
+                                        class="form-control"
+                                        id="eMail"
+                                        placeholder="Enter email ID"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="phone"
+                                        placeholder="Enter phone number"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="nic">NIC</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="nic"
+                                        placeholder="Nic"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="Address">Address</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="Address"
+                                        placeholder="Enter Address"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="button" id="cancel" name="submit" class="btn btn-secondary">Cancel
+                                </button>
+                                <button type="button" id="update" name="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="./css/profile.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        let dynamicValue = localStorage.getItem("myDynamicValue"); // retrieve the value from local storage
+        console.log("Dynamic value is: " + dynamicValue); // do something with the dynamic value
+        $.ajax({
+            type: "GET",
+            url: `http://localhost:8080/api/v1/customer/${dynamicValue}`,
+            success: function (data) {
+                console.log(data);
+                $("#fullName").val(data.cusName);
+                $("#eMail").val(data.email);
+                $("#Address").val(data.address);
+                $("#nic").val(data.nic);
+                $("#phone").val(data.contactNo);
+                $("#fullNameTag").val(data.cusName);
+            },
+            error: function (error) {
+                // handle error response here
+                console.log(error);
+            }
+        });
+    });
+
+    $("#update").click(function () {
+        let formData = {
+            cusName: $("#fullName").val(),
+            address: $("#Address").val(),
+            nic: $("#nic").val(),
+            email: $("#eMail").val(),
+            contactNo: $("#phone").val()
+        };
+
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json;",
+            url: "http://localhost:8080/api/v1/customer/",
+            data: JSON.stringify(formData),
+            dataType: "json",
+
+        }).done(function (data) {
+            console.log(data);
+        });
+    });
+
+</script>
+</body>
+</html>
