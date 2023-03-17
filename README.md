@@ -19,4 +19,5 @@ HTML , CSS , Bootstrap , SCSS , AJAX , jQuery , Java Script
 
 <br/>
 
+### Deployed URL : https://kumari-bookshop.github.io/KumariBookshopClientEndPortal.github.io/
 ###### © 2023 KUMARI BOOKSHOP ~Sahan Nimesha~
