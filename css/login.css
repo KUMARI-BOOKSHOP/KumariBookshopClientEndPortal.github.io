@@ -2317,8 +2317,8 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
 
 .btn-outline-success {
-  color: #28a745;
-  border-color: #28a745; }
+  color: #000000;
+  border-color: #000000; }
   .btn-outline-success:hover {
     color: #fff;
     background-color: #28a745;
