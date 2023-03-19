@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>KUMARI BOOKSHOP</title>
+    <title>Login Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -30,9 +30,9 @@
                                    required>
                             <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
-                        <div class="form-group">
+                        <div id="loginAction" class="form-group">
                             <button type="submit" id="login" class="form-control btn btn-primary submit px-3">
-                                <a href="./home.html" class="px-2 py-2 mr-md-1 rounded">Login</a>
+                                <a href="./home.html" id="redirectHome" class="px-2 py-2 mr-md-1 rounded">Login</a>
                             </button>
                         </div>
                         <div class="form-group d-md-flex">
@@ -63,7 +63,7 @@
 
 <script>
     $("#login").click(function () {
-        let userName = $("#fullName-field").val();
+        let userName = $("#userName").val();
         console.log(userName);
         localStorage.setItem("myDynamicValue", userName);
     });
@@ -82,9 +82,9 @@
                     console.log(data);
 
                 },
-                error: function (error) {
-                    // handle error response here
-                    console.log(error);
+                error: function (resp) {
+                    console.log(resp);
+                    $('#error').toast('show');
                 }
             });
         });
